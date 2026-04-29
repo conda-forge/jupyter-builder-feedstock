@@ -3,11 +3,26 @@ About jupyter-builder-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/jupyter-builder-feedstock/blob/main/LICENSE.txt)
 
+
+About jupyter-builder
+---------------------
+
 Home: https://pypi.org/project/jupyter-builder
 
 Package license: BSD-3-Clause AND MIT AND ISC
 
 Summary: JupyterLab build tools
+
+Development: https://github.com/jupyterlab/jupyter-builder
+
+About jupyter-builder-with-nodejs
+---------------------------------
+
+Home: https://pypi.org/project/jupyter-builder
+
+Package license: BSD-3-Clause AND MIT AND ISC
+
+Summary: JupyterLab build tools (with nodejs)
 
 Development: https://github.com/jupyterlab/jupyter-builder
 
@@ -29,6 +44,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-jupyter--builder-green.svg)](https://anaconda.org/conda-forge/jupyter-builder) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/jupyter-builder.svg)](https://anaconda.org/conda-forge/jupyter-builder) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jupyter-builder.svg)](https://anaconda.org/conda-forge/jupyter-builder) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jupyter-builder.svg)](https://anaconda.org/conda-forge/jupyter-builder) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-jupyter--builder--with--nodejs-green.svg)](https://anaconda.org/conda-forge/jupyter-builder-with-nodejs) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/jupyter-builder-with-nodejs.svg)](https://anaconda.org/conda-forge/jupyter-builder-with-nodejs) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jupyter-builder-with-nodejs.svg)](https://anaconda.org/conda-forge/jupyter-builder-with-nodejs) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jupyter-builder-with-nodejs.svg)](https://anaconda.org/conda-forge/jupyter-builder-with-nodejs) |
 
 Installing jupyter-builder
 ==========================
@@ -40,16 +56,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `jupyter-builder` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `jupyter-builder, jupyter-builder-with-nodejs` can be installed with `conda`:
 
 ```
-conda install jupyter-builder
+conda install jupyter-builder jupyter-builder-with-nodejs
 ```
 
 or with `mamba`:
 
 ```
-mamba install jupyter-builder
+mamba install jupyter-builder jupyter-builder-with-nodejs
 ```
 
 It is possible to list all of the versions of `jupyter-builder` available on your platform with `conda`:
