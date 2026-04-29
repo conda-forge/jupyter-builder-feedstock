@@ -50,12 +50,8 @@ outputs:
           python_version:
             - ${{ python_min }}.*
             - ${{ python_check_max }}.*
-      - requirements:
-          run:
-            - nodejs ${{ nodejs_min }}.*
-        script:
+      - script:
           - jupyter-builder --help
-          - jlpm --help
 
   - package:
       name: jupyter-builder-with-nodejs
@@ -64,7 +60,7 @@ outputs:
     requirements:
       run:
         - ${{ pin_subpackage("jupyter-builder", exact=True) }}
-        - nodejs
+        - nodejs ${{ nodejs_min }}.*
     tests:
       - script:
           - jlpm --help
