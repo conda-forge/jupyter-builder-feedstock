@@ -64,6 +64,9 @@ outputs:
     tests:
       - script:
           - jlpm --help
+      # see: https://github.com/conda-forge/jupyterlab-feedstock/issues/466
+      # - downstream: jupyterlab
+      - downstream: notebook
     about:
       summary: JupyterLab build tools (with nodejs)
 
