@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.0.8"
+  version: "0.0.9"
   nodejs_min: "22"
   python_check_max: "3.14"
 
@@ -12,10 +12,10 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/j/jupyter-builder/jupyter_builder-${{ version }}.tar.gz
-  sha256: 0192128efc379fc34a9a3de3de7118759aca6f6571a58556c1fa1518d1db2917
+  sha256: d266930740c0453619491b21be31b30847f8daa6f5f6aad9db5c507241e60fcf
 
 build:
-  number: 1
+  number: 0
   noarch: python
 
 outputs:
