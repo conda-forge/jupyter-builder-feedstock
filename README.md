@@ -49,14 +49,14 @@ Current release info
 Installing jupyter-builder
 ==========================
 
-Installing `jupyter-builder` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `jupyter-builder` from the `conda-forge/label/jupyter_builder_beta` channel can be achieved by adding `conda-forge/label/jupyter_builder_beta` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/jupyter_builder_beta
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `jupyter-builder, jupyter-builder-with-nodejs` can be installed with `conda`:
+Once the `conda-forge/label/jupyter_builder_beta` channel has been enabled, `jupyter-builder, jupyter-builder-with-nodejs` can be installed with `conda`:
 
 ```
 conda install jupyter-builder jupyter-builder-with-nodejs
@@ -71,26 +71,26 @@ mamba install jupyter-builder jupyter-builder-with-nodejs
 It is possible to list all of the versions of `jupyter-builder` available on your platform with `conda`:
 
 ```
-conda search jupyter-builder --channel conda-forge
+conda search jupyter-builder --channel conda-forge/label/jupyter_builder_beta
 ```
 
 or with `mamba`:
 
 ```
-mamba search jupyter-builder --channel conda-forge
+mamba search jupyter-builder --channel conda-forge/label/jupyter_builder_beta
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search jupyter-builder --channel conda-forge
+mamba repoquery search jupyter-builder --channel conda-forge/label/jupyter_builder_beta
 
 # List packages depending on `jupyter-builder`:
-mamba repoquery whoneeds jupyter-builder --channel conda-forge
+mamba repoquery whoneeds jupyter-builder --channel conda-forge/label/jupyter_builder_beta
 
 # List dependencies of `jupyter-builder`:
-mamba repoquery depends jupyter-builder --channel conda-forge
+mamba repoquery depends jupyter-builder --channel conda-forge/label/jupyter_builder_beta
 ```
 
 
