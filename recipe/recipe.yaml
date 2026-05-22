@@ -38,7 +38,6 @@ outputs:
       run:
         - jupyter_core
         - python >=${{ python_min }}
-        - requests
         - tomli
         - traitlets
       run_constraints:
