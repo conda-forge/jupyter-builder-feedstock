@@ -66,12 +66,13 @@ outputs:
           - jlpm --help
       - requirements:
           run:
-            - python ${{ python_min }}.*
             - copier >=9.3,<10
             - coverage
             - jinja2-time
+            - nodejs ${{ nodejs_min }}.*
             - pytest >=7.0
             - pytest-html
+            - python ${{ python_min }}.*
         files:
           source:
             - tests/
