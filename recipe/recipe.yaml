@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "1.0.2"
+  version: "1.1.0"
   nodejs_min: "22"
   python_check_max: "3.14"
   cov_fail_under: "34"
@@ -13,7 +13,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/j/jupyter-builder/jupyter_builder-${{ version }}.tar.gz
-  sha256: 6155d78a5325010532a6419ffcba89eac643fd1aa56ea83115e661924d6f6aab
+  sha256: b996e8af616900f18724fa34883169d869be2205497940bec78a3a1031eb897d
 
 build:
   number: 0
@@ -79,9 +79,9 @@ outputs:
         script:
           env:
             PYTEST_ADDOPTS: >
-             --html=pytest.html
-             --override-ini=generate_report_on_test=true
-             -k "not watch"
+              --html=pytest.html
+              --override-ini=generate_report_on_test=true
+              -k "not watch"
           content:
             - coverage run --source=jupyter_builder --branch -m pytest -vv --tb=long --color=yes
             - coverage report --show-missing --skip-covered --fail-under=${{ cov_fail_under }}
