@@ -69,6 +69,7 @@ outputs:
             - copier >=9.3,<10
             - coverage
             - jinja2-time
+            - mypy
             - nodejs ${{ nodejs_min }}.*
             - pytest >=7.0
             - pytest-html
@@ -85,6 +86,7 @@ outputs:
           content:
             - coverage run --source=jupyter_builder --branch -m pytest -vv --tb=long --color=yes
             - coverage report --show-missing --skip-covered --fail-under=${{ cov_fail_under }}
+            - mypy -p jupyter_builder
       # see: https://github.com/conda-forge/jupyterlab-feedstock/issues/466
       # - downstream: jupyterlab
       # - downstream: notebook
