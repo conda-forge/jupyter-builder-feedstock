@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "1.2.1"
+  version: "1.2.2"
   nodejs_min: "22"
   python_check_max: "3.14"
   cov_fail_under: "61"
@@ -14,7 +14,7 @@ recipe:
 
 source:
   url: https://pypi.org/packages/source/j/jupyter-builder/jupyter_builder-${{ version }}.tar.gz
-  sha256: 05772287000a550b6e363812a6f5a197865e758d61833464225e9cfaf5966b56
+  sha256: b6cea88f58e44b2c5eba96f28d2e0d16fd453d3ca6dc9c4492ff8a1f2e97f601
 
 build:
   number: 0
@@ -79,6 +79,11 @@ outputs:
           source:
             - tests/
             - pyproject.toml
+            - package.json
+            - yarn.lock
+            - .yarnrc.yml
+            - tsconfig.json
+            - src/
         script:
           - coverage run --source=jupyter_builder --branch -m pytest -vv --tb=long --color=yes -k "${{ pytest_k }}"
           - coverage report --show-missing --skip-covered --fail-under=${{ cov_fail_under }}
