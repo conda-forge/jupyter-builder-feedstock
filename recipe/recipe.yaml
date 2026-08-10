@@ -79,6 +79,11 @@ outputs:
           source:
             - tests/
             - pyproject.toml
+            - package.json
+            - yarn.lock
+            - .yarnrc.yml
+            - tsconfig.json
+            - src/
         script:
           - coverage run --source=jupyter_builder --branch -m pytest -vv --tb=long --color=yes -k "${{ pytest_k }}"
           - coverage report --show-missing --skip-covered --fail-under=${{ cov_fail_under }}
