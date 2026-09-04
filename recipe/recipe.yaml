@@ -77,26 +77,26 @@ outputs:
             - python ${{ python_min }}.*
         files:
           source:
-            - tests/
-            - pyproject.toml
-            - package.json
-            - yarn.lock
             - .yarnrc.yml
-            - tsconfig.json
+            - package.json
+            - pyproject.toml
             - src/
+            - tests/
+            - tsconfig.json
+            - yarn.lock
         script:
           - coverage run --source=jupyter_builder --branch -m pytest -vv --tb=long --color=yes -k "${{ pytest_k }}"
           - coverage report --show-missing --skip-covered --fail-under=${{ cov_fail_under }}
           - mypy -p jupyter_builder --exclude "debug_log_file_mixin\.py"
       # see: https://github.com/conda-forge/jupyterlab-feedstock/issues/466
       # - downstream: jupyterlab
-      # - downstream: notebook
+      - downstream: notebook
     about:
       summary: JupyterLab build tools (with nodejs)
 
 about:
   summary: JupyterLab build tools
-  license: BSD-3-Clause AND MIT AND ISC
+  license: Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND ISC AND MIT
   license_file:
     - LICENSE
     - THIRD_PARTY_LICENSES/
