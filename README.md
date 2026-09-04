@@ -9,7 +9,7 @@ About jupyter-builder
 
 Home: https://pypi.org/project/jupyter-builder
 
-Package license: BSD-3-Clause AND MIT AND ISC
+Package license: Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND ISC AND MIT
 
 Summary: JupyterLab build tools
 
@@ -20,7 +20,7 @@ About jupyter-builder-with-nodejs
 
 Home: https://pypi.org/project/jupyter-builder
 
-Package license: BSD-3-Clause AND MIT AND ISC
+Package license: Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND ISC AND MIT
 
 Summary: JupyterLab build tools (with nodejs)
 
