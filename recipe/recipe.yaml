@@ -90,7 +90,8 @@ outputs:
           - mypy -p jupyter_builder --exclude "debug_log_file_mixin\.py"
       # see: https://github.com/conda-forge/jupyterlab-feedstock/issues/466
       # - downstream: jupyterlab
-      - downstream: notebook
+      # new dangling python_min issues
+      # - downstream: notebook
     about:
       summary: JupyterLab build tools (with nodejs)
 
