@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "1.2.4"
+  version: "1.3.0"
   nodejs_min: "22"
   python_check_max: "3.14"
   cov_fail_under: "61"
@@ -13,8 +13,8 @@ recipe:
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/j/jupyter-builder/jupyter_builder-${{ version }}.tar.gz
-  sha256: da5b46fc49faac39e977259e489519ee1a92917c31d90d1d258832d8f4d288a3
+  url: https://files.pythonhosted.org/packages/source/j/jupyter-builder/jupyter_builder-${{ version }}.tar.gz
+  sha256: dc0a3cdc27be674f29de2b4aecfdd55190fffa65199846bbdf4ceaf31a56b7d1
 
 build:
   number: 0
@@ -26,7 +26,7 @@ outputs:
     build:
       noarch: python
       script:
-        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check --check-build-dependencies
       python:
         entry_points:
           - jupyter-builder = jupyter_builder.main:main
@@ -51,8 +51,16 @@ outputs:
           python_version:
             - ${{ python_min }}.*
             - ${{ python_check_max }}.*
-      - script:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
           - jupyter-builder --help
+      - package_contents:
+          strict: true
+          site_packages:
+            - jupyter_builder/**
+            - jupyter_builder-${{ version }}.dist-info/**
 
   - package:
       name: jupyter-builder-with-nodejs
@@ -61,19 +69,24 @@ outputs:
     requirements:
       run:
         - ${{ pin_subpackage("jupyter-builder", exact=True) }}
-        - nodejs ${{ nodejs_min }}.*
+        - nodejs >=${{ nodejs_min }}
     tests:
-      - script:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - nodejs ${{ nodejs_min }}.*
+        script:
           - jlpm --help
       - requirements:
           run:
             - copier >=9.3,<10
-            - coverage
+            - coverage >=7.10.6
+            - deptry
             - jinja2-time
+            - jsonschema
             - mypy
             - nodejs ${{ nodejs_min }}.*
-            - pytest >=7.0
-            - pytest-html
+            - pytest >=7.3
             - python ${{ python_min }}.*
         files:
           source:
@@ -88,10 +101,9 @@ outputs:
           - coverage run --source=jupyter_builder --branch -m pytest -vv --tb=long --color=yes -k "${{ pytest_k }}"
           - coverage report --show-missing --skip-covered --fail-under=${{ cov_fail_under }}
           - mypy -p jupyter_builder --exclude "debug_log_file_mixin\.py"
+      - downstream: notebook
       # see: https://github.com/conda-forge/jupyterlab-feedstock/issues/466
       # - downstream: jupyterlab
-      # new dangling python_min issues
-      # - downstream: notebook
     about:
       summary: JupyterLab build tools (with nodejs)
 
