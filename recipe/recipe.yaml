@@ -68,12 +68,13 @@ outputs:
       - requirements:
           run:
             - copier >=9.3,<10
-            - coverage
+            - coverage >=7.10.6
+            - deptry
             - jinja2-time
+            - jsonschema
             - mypy
             - nodejs ${{ nodejs_min }}.*
-            - pytest >=7.0
-            - pytest-html
+            - pytest >=7.3
             - python ${{ python_min }}.*
         files:
           source:
@@ -90,8 +91,7 @@ outputs:
           - mypy -p jupyter_builder --exclude "debug_log_file_mixin\.py"
       # see: https://github.com/conda-forge/jupyterlab-feedstock/issues/466
       # - downstream: jupyterlab
-      # new dangling python_min issues
-      # - downstream: notebook
+      - downstream: notebook
     about:
       summary: JupyterLab build tools (with nodejs)
 
