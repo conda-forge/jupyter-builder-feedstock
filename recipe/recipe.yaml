@@ -51,8 +51,16 @@ outputs:
           python_version:
             - ${{ python_min }}.*
             - ${{ python_check_max }}.*
-      - script:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
           - jupyter-builder --help
+      - package_contents:
+          strict: true
+          site_packages:
+            - jupyter_builder/**
+            - jupyter_builder-${{ version }}.dist-info/**
 
   - package:
       name: jupyter-builder-with-nodejs
@@ -61,17 +69,13 @@ outputs:
     requirements:
       run:
         - ${{ pin_subpackage("jupyter-builder", exact=True) }}
-        - nodejs ${{ nodejs_min }}.*
+        - nodejs >=${{ nodejs_min }}
     tests:
-      - package_contents:
-          strict: true
-          files:
-            - etc/conda/test-files/jupyter-builder/**
-          site_packages:
-            - jupyter_builder/**
-            - jupyter_builder-${{ version }}.dist-info/**
-
-      - script:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - nodejs ${{ nodejs_min }}.*
+        script:
           - jlpm --help
       - requirements:
           run:
