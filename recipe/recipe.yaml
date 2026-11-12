@@ -13,7 +13,7 @@ recipe:
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/j/jupyter-builder/jupyter_builder-${{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/j/jupyter-builder/jupyter_builder-${{ version }}.tar.gz
   sha256: dc0a3cdc27be674f29de2b4aecfdd55190fffa65199846bbdf4ceaf31a56b7d1
 
 build:
@@ -26,7 +26,7 @@ outputs:
     build:
       noarch: python
       script:
-        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check --check-build-dependencies
       python:
         entry_points:
           - jupyter-builder = jupyter_builder.main:main
@@ -63,6 +63,14 @@ outputs:
         - ${{ pin_subpackage("jupyter-builder", exact=True) }}
         - nodejs ${{ nodejs_min }}.*
     tests:
+      - package_contents:
+          strict: true
+          files:
+            - etc/conda/test-files/jupyter-builder/**
+          site_packages:
+            - jupyter_builder/**
+            - jupyter_builder-${{ version }}.dist-info/**
+
       - script:
           - jlpm --help
       - requirements:
@@ -89,9 +97,9 @@ outputs:
           - coverage run --source=jupyter_builder --branch -m pytest -vv --tb=long --color=yes -k "${{ pytest_k }}"
           - coverage report --show-missing --skip-covered --fail-under=${{ cov_fail_under }}
           - mypy -p jupyter_builder --exclude "debug_log_file_mixin\.py"
+      - downstream: notebook
       # see: https://github.com/conda-forge/jupyterlab-feedstock/issues/466
       # - downstream: jupyterlab
-      - downstream: notebook
     about:
       summary: JupyterLab build tools (with nodejs)
 
