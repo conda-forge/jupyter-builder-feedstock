@@ -40,7 +40,6 @@ outputs:
       run:
         - jupyter_core
         - python >=${{ python_min }}
-        - tomli
         - traitlets
       run_constraints:
         - nodejs >=${{ nodejs_min }}
